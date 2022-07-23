@@ -195,6 +195,6 @@ main()
 
 # Cara Running Program :
 1. Import dataset "lms.sql" ke mySQL Workbench dengan cara klik 'server' lalu 'data import'
-2. setelah dataset di import, masuk ke terminal anaconda dan arahkan ke directory hasil download. command : cd "<directory anda>"
+2. setelah dataset di import, masuk ke terminal anaconda dan arahkan ke directory hasil download. command : cd "<directory_anda>"
 3. running library.py dengan cara command : python library.py
 4. lakukan task dengan memilih nomor input
