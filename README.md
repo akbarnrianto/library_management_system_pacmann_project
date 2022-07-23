@@ -1,13 +1,14 @@
 # library_management_system_pacmann_project
 
-## tujuan pengerjaan project :
+# tujuan pengerjaan project :
 pembuatan sistem manajemen perpustakaan
 
-## detail task (lebih lengkapnya lihat code pada file library.py)
+# detail task (lebih lengkapnya lihat code pada file library.py) :
 ## importing library
 import mysql.connector
 import random
 import pandas as pd
+
 ## connect database
 mydb = mysql.connector.connect(
     host = "localhost",
@@ -192,7 +193,7 @@ def main():
 
 main()
 
-## Cara Running Program :
+# Cara Running Program :
 1. Import dataset "lms.sql" ke mySQL Workbench dengan cara klik 'server' lalu 'data import'
 2. setelah dataset di import, masuk ke terminal anaconda dan arahkan ke directory hasil download. command : cd "<directory anda>"
 3. running library.py dengan cara command : python library.py
