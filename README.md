@@ -9,7 +9,7 @@ import mysql.connector
 import random
 import pandas as pd
 
-## connect database
+## connect database (harap diingat bahwa password agar disesuaikan dengan user mySQL masing2)
 mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
