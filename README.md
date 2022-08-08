@@ -1,23 +1,28 @@
 # library_management_system_pacmann_project
 
-# tujuan pengerjaan project :
-pembuatan sistem manajemen perpustakaan
+## Tujuan pengerjaan project :
+Pembuatan Sistem Manajemen Perpustakaan Sederhana
 
-# detail task (lebih lengkapnya lihat code pada file library.py) :
-## importing library
+## Deskripsi Task :
+1. Importing library yang dibutuhkan :
+```
 import mysql.connector
 import random
 import pandas as pd
+```
 
-## connect database (harap diingat bahwa password agar disesuaikan dengan user mySQL masing2)
+2. Melakukan Connect ke database menggunakan sintaks :
+```
 mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "rianto08",
-    database = "lms",
+    password = "rianto08", ##password tergantung pembuatan password MySQL Workbench anda
+    database = "lms", ##nama database/schema di MySQL anda
 )
+```
 
-## sintaks untuk melakukan pendaftaran user
+3. Fungsi berikut untuk menambahkan User Baru :
+```
 def adduser():
     id_user = random.randint(1,1000)
     nama = input("Masukkan nama user:")
@@ -32,8 +37,10 @@ def adduser():
     print("...........")
     print("Data berhasil dimasukkan")
     main()
-    
-## sintaks untuk melakukan pendaftaran buku
+```
+
+4. Fungsi berikut untuk menambahkan Buku Baru :
+```
 def addbook():
     id_buku = input("Masukkan id buku:")
     nama_buku = input("Masukkan nama buku:")
@@ -47,8 +54,10 @@ def addbook():
     print(".........")
     print("Data berhasil dimasukkan")
     main()
-    
-## sintaks untuk melakukan peminjaman buku
+```
+
+5. Fungsi berikut melakukan Pencatatan Buku yang dipinjam :
+```
 def issuebook():
     id_user = input("Masukkan id user:")
     id_buku = input("Masukkan id buku:")
@@ -64,8 +73,10 @@ def issuebook():
     print("Buku dipinjamkan ke:",nama_peminjam)
     stokbuku(id_buku,-1)
     main()
-    
-## sintaks untuk melakukan pengembalian buku
+```
+
+6. Fungsi berikut melakukan Pencatatan Pengembalian Buku :
+```
 def submitbook():
     id_user = input("Masukkan id user:")
     id_buku = input("Masukkan id buku:")
@@ -81,8 +92,10 @@ def submitbook():
     print("Buku dikembalikan oleh:",nama_peminjam)
     stokbuku(id_buku,1)
     main()
-    
-## sintaks untuk penambahan/pengurangan stok buku jika buku dikembalikan/dipinjam
+```
+
+6. Fungsi untuk mengecek Stok Buku :
+```
 def stokbuku(id_buku,u):
     sql = "select stock from buku where id_buku = %s;"
     data = (id_buku,)
@@ -95,8 +108,10 @@ def stokbuku(id_buku,u):
     c.execute(sql,d)
     mydb.commit()
     main()
-    
-## sintaks untuk menampilkan daftar user
+```
+
+7. Fungsi untuk melihat daftar User Perpustakaan :
+```
 def displayuser():
     sql = "select * from user;"
     c = mydb.cursor()
@@ -105,8 +120,10 @@ def displayuser():
     result = pd.read_sql(sql,con=mydb)
     print(result)
     main()
-    
-## sintaks untuk menampilkan daftar buku
+```
+
+8. Fungsi untuk melihat daftar Buku :
+```
 def displaybook():
     sql = "select * from buku;"
     c = mydb.cursor()
@@ -115,8 +132,10 @@ def displaybook():
     result = pd.read_sql(sql,con=mydb)
     print(result)
     main()
+```
 
-## sintaks untuk menampilkan daftar peminjaman
+9. Fungsi untuk melihat User yang melakukan Peminjaman :
+```
 def displaypeminjaman():
     sql = "select * from pinjam;"
     c = mydb.cursor()
@@ -125,8 +144,10 @@ def displaypeminjaman():
     result = pd.read_sql(sql,con=mydb)
     print(result)
     main()
-    
-## sintaks untuk mencari buku
+```
+
+10. Fungsi untuk melakukan Pencarian Buku :
+```
 def caribuku():
     nama_buku = input("Masukkan nama buku yang dicari:")
     sql = "select * from buku where nama_buku = %s;"
@@ -137,8 +158,10 @@ def caribuku():
     result = pd.read_sql(sql,con=mydb)
     print(result)
     main()
-    
-## sintaks menampilkan seluruh histori transaksi
+```
+
+11. Fungsi untuk melihat Daftar Transaksi yang terjadi (Peminjaman, Pengembalian):
+```
 def transaksi():
     sql = """select id_user, id_buku, nama_user, nama_buku, tgl_peminjaman, tgl_pengembalian from pinjam
     join kembali using (id_user, id_buku, nama_user, nama_buku)
@@ -150,8 +173,10 @@ def transaksi():
     result = pd.read_sql(sql,con=mydb)
     print(result)
     main()
-    
-## sintaks interface awal
+```
+
+12. Fungsi berikut adalah main Interface (Tampilan Awal) dari Project ini :
+```
 def main():
     print("""...............LIBRARY MANAGEMENT SYSTEM.................
     1. Pendaftaran User Baru
@@ -192,9 +217,10 @@ def main():
         main()
 
 main()
+```
 
-# Cara Running Program :
+## Cara Running Program :
 1. Import dataset "lms.sql" ke mySQL Workbench dengan cara klik 'server' lalu 'data import'
-2. setelah dataset di import, masuk ke terminal anaconda dan arahkan ke directory hasil download. command : cd "<directory_anda>"
-3. running library.py dengan cara command : python library.py
-4. lakukan task dengan memilih nomor input
+2. Setelah dataset di import, masuk ke terminal anaconda dan arahkan ke directory hasil download. command : cd "<directory_anda>"
+3. Running library.py dengan cara command : python library.py
+4. Lakukan task dengan memilih nomor input
